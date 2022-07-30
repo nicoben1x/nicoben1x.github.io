@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora BTC-ARS</title>
+	 <link rel="stylesheet" href="style.css" type="text/css">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	 
+</head>
+<body onload="setTimeout('actualizarboton()',1000);">
+	<div id="divjefe">
+			<div id="divpadre">
+				<h1>Calculadora Bitcoin</h1>
+				<p id="parrafo">Buscando respuesta...</p>
+
+				<div id="div-botones">
+					<input type="button" id="idactualizar" value="Actualizar" onclick="actualizarboton()">
+					<input type="button" id="botonmodo" value="Modo Compra" onclick="botonmodoclick()">
+				</div>
+			</div>
+	
+
+		<div id="div-calc">
+			<form>
+				<div class="divamigos">
+					<label id="id-bitcoin" for="bitcoinf" onclick="bitcoinfclick()">Bitcoin:</label>
+					<input class="inputs" type="number" id="bitcoinf" oninput="btcinput()"  step='0.00000001' placeholder='0' onclick="bitcoinfclick()" ><br>
+				</div>
+
+				<div class="divamigos"> 
+				<label id="pesosid" for="pesosf" onclick="pesosfclick()">Pesos:</label>
+				<input class="inputs" type="number" id="pesosf" oninput="arsinput()" step='0.01' value='0.00' placeholder='0.00' disabled="true" onclick="pesosfclick()"><br>
+				</div>
+
+				<div class="divamigos">
+				<label for="dolaresf" onclick="dolaresfclick()">Dólares:</label>
+				<input class="inputs" type="number" id="dolaresf" oninput="usdinput()" step='0.01' value='0.00' placeholder='0.00' disabled="true" onclick="dolaresfclick()"><br>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+
+	 	var comprabtcars=0;
+	 	var ventabtcars=1234567;
+
+	 	var comprabtcusd=0;
+	 	var ventabtcusd=12345;
+
+	 	var valorbtcusd=comprabtcusd;
+	 	var valorbtcars=comprabtcars;
+
+	 	var bitcoinmanda = true;
+	 	var pesomanda= false;
+	 	var dolarmanda= false;
+
+	 	var modocompra= true;
+
+	 	var fecha = 0;
+
+	 	const parrafo = document.getElementById('parrafo');
+
+
+
+
+	    function actualizarboton() {
+	    
+
+	    	const urlbtcars = "https://criptoya.com/api/letsbit/btc/ars/1"
+	    fetch(urlbtcars)
+	    .then(response => response.json())
+	    .then(data =>{
+	    	comprabtcars = data.totalAsk;
+	    	ventabtcars = data.totalBid;
+	    	fecha = data.time;
+	    	
+
+
+	    })
+
+	    const urlbtcusd = "https://criptoya.com/api/letsbit/btc/usd/1"
+	    fetch(urlbtcusd)
+	    .then(response => response.json())
+	    .then(data =>{
+	    	comprabtcusd = data.totalAsk;
+	    	ventabtcusd = data.totalBid;
+	    	fecha = data.time;
+
+
+
+	    	const unixTimestamp = fecha
+
+			const milliseconds = fecha * 1000
+
+			const dateObject = new Date(milliseconds)
+
+			const humanDateFormat = dateObject.toLocaleString() 
+
+
+	    })
+
+
+
+
+
+	    if (modocompra == true) {
+				valorbtcusd=comprabtcusd;
+				valorbtcars=comprabtcars;
+				console.log("el modo compra es true");
+			}else{
+				valorbtcusd=ventabtcusd;
+				valorbtcars=ventabtcars;
+				console.log("el modo compra es false");
+			}
+	 	    
+
+	 	    const unixTimestamp = fecha;
+
+			const milliseconds = fecha * 1000;
+
+			const dateObject = new Date(milliseconds);
+
+			const humanDateFormat = dateObject.toLocaleString() ;
+
+
+
+
+
+	    // Create our number formatter.
+			var formatter = new Intl.NumberFormat('en-US', {
+ 				style: 'currency',
+  				currency: 'USD',
+  				maximumFractionDigits: 0,
+
+				});
+
+
+
+
+
+
+			// function delay(n){
+   //  			return new Promise(function(resolve){
+   //     				 setTimeout(resolve,n*1000);
+   // 					 });
+			// }
+
+			// async function myAsyncFunction(){
+			//  await delay(1);
+
+			window.alert("Bienvenido a nuestro sitio web");
+
+
+	     
+	     	parrafo.innerHTML = "1 BTC es igual a " + formatter.format(valorbtcars)+ " pesos.\n1 BTC es igual a " + formatter.format(valorbtcusd)+ " dolares.\nActualizado " + humanDateFormat + " hs.";
+
+	     	console.log("ultima etapa pasada");
+
+
+	     	document.getElementById("bitcoinf").value = "";
+	     	document.getElementById("pesosf").value = "";
+	     	document.getElementById("dolaresf").value = "";
+		
+			 
+
+			// }
+
+			// myAsyncFunction();
+
+
+
+	   }
+
+
+
+	 	function botonmodoclick(){
+	 		var textt = document.getElementById('botonmodo');
+	 		
+	 		
+	 		if (textt.value == "Modo Compra"){
+	 			textt.value = "Modo Venta";
+	 			modocompra = false;
+	 			valorbtcars = ventabtcars; 
+	 			valorbtcusd = ventabtcusd;
+
+
+	 	// 		const unixTimestamp = fecha
+
+			// const milliseconds = fecha * 1000
+
+			// const dateObject = new Date(milliseconds)
+
+			// const humanDateFormat = dateObject.toLocaleString() 
+
+
+
+
+
+	  //   // Create our number formatter.
+			// var formatter = new Intl.NumberFormat('en-US', {
+ 		// 		style: 'currency',
+  	// 			currency: 'USD',
+  	// 			maximumFractionDigits: 0,
+
+			// 	});
+
+
+
+
+	  //  // setTimeout(function(){
+    		
+	  //   	parrafo.innerHTML = "1 BTC es igual a " + formatter.format(valorbtcars)+ " pesos.\n1 BTC es igual a " + formatter.format(valorbtcusd)+ " dolares.\nActualizado " + humanDateFormat + " hs.";
+
+
+
+
+	 		}
+	 		 else {
+	 			textt.value = "Modo Compra";
+	 			modocompra = true;
+	 			valorbtcars = comprabtcars; 
+	 			valorbtcusd = comprabtcusd;
+
+
+
+
+
+	 		}
+	 		actualizarboton();
+
+	 		document.getElementById("bitcoinf").value = "";
+	     	document.getElementById("pesosf").value = "";
+	     	document.getElementById("dolaresf").value = "";
+
+	 		
+
+
+	 	
+	 		
+	 	}
+
+	 	function bitcoinfclick(){
+	 		var pesosinput = document.getElementById('pesosf');
+	 		var dolaresinput = document.getElementById('dolaresf');
+	 		var bitcoininput = document.getElementById('bitcoinf');
+	 		pesosinput.disabled = true;
+	 		dolaresinput.disabled = true;
+	 		bitcoininput.disabled = false;
+	 		pesosinput.value = "";
+	 		dolaresinput.value = "";
+	 		bitcoininput.value = "";
+
+	 		bitcoinmanda = true;
+	 		pesomanda= false;
+	 		dolarmanda= false;
+
+
+	 	}
+
+	 	function pesosfclick(){
+	 		var pesosinput = document.getElementById('pesosf');
+	 		var dolaresinput = document.getElementById('dolaresf');
+	 		var bitcoininput = document.getElementById('bitcoinf');
+	 		pesosinput.disabled = false;
+	 		dolaresinput.disabled = true;
+	 		bitcoininput.disabled = true;
+	 		pesosinput.value = "";
+	 		dolaresinput.value = "";
+	 		bitcoininput.value = "";
+
+	 	}
+
+	 	function dolaresfclick(){
+	 		var pesosinput = document.getElementById('pesosf');
+	 		var dolaresinput = document.getElementById('dolaresf');
+	 		var bitcoininput = document.getElementById('bitcoinf');
+	 		pesosinput.disabled = true;
+	 		dolaresinput.disabled = false;
+	 		bitcoininput.disabled = true;
+	 		pesosinput.value = "";
+	 		dolaresinput.value = "";
+	 		bitcoininput.value = "";
+
+	 	}
+
+
+
+
+	 	function btconchange(){
+	 		console.log("btc on change activado");
+	 	}
+
+	 	
+
+		function btcinput() {
+
+
+		const num1 = document.getElementById("bitcoinf").value;
+		const decimalCount = num => {
+   		// Convert to String
+   const numStr = String(num);
+   // String Contains Decimal
+   if (numStr.includes('.')) {
+      return numStr.split('.')[1].length;
+   };
+   // String Does Not Contain Decimal
+   return 0;
+}
+
+         if(decimalCount(num1) > 8){
+         	//window.alert("Tiene mas de 8 digitos cabron");
+
+
+
+         	function cutNumber(number, digitsAfterDot) {
+    const str = `${number}`;
+
+    return str.slice(0, str.indexOf('.') + digitsAfterDot + 1);
+}
+
+
+
+document.getElementById("bitcoinf").value = cutNumber(document.getElementById("bitcoinf").value, 8); 
+
+
+
+
+
+
+         }
+
+
+
+
+    	document.getElementById("pesosf").value = valorbtcars * document.getElementById("bitcoinf").value;
+    	document.getElementById("dolaresf").value = valorbtcusd * document.getElementById("bitcoinf").value;
+
+    	// Create our number formatter.
+			var formatter = new Intl.NumberFormat('en-US', {
+ 				style: 'currency',
+  				currency: 'USD',
+  				maximumFractionDigits: 0,
+
+				});
+
+
+    	document.getElementById("pesosf").type="text";
+    	document.getElementById("pesosf").value = formatter.format(document.getElementById("pesosf").value) ;
+
+    	document.getElementById("dolaresf").type="text";
+    	document.getElementById("dolaresf").value = formatter.format(document.getElementById("dolaresf").value) ;
+
+
+
+    	
+		}
+
+		function arsinput() {
+    	document.getElementById("bitcoinf").value = document.getElementById("pesosf").value / valorbtcars ;
+    	document.getElementById("bitcoinf").value = document.getElementById("bitcoinf").value.toString().match(/^-?\d+(?:\.\d{0,8})?/)[0];
+
+
+
+
+    	document.getElementById("dolaresf").value = valorbtcusd * document.getElementById("bitcoinf").value;
+
+    	// Create our number formatter.
+			var formatter = new Intl.NumberFormat('en-US', {
+ 				style: 'currency',
+  				currency: 'USD',
+  				maximumFractionDigits: 0,
+
+				});
+
+
+    	
+    	document.getElementById("dolaresf").type="text";
+    	document.getElementById("dolaresf").value = formatter.format(document.getElementById("dolaresf").value) ;
+
+
+
+    	
+		}
+
+		function usdinput() {
+    	document.getElementById("bitcoinf").value = document.getElementById("dolaresf").value / valorbtcusd ;
+    	document.getElementById("bitcoinf").value = document.getElementById("bitcoinf").value.toString().match(/^-?\d+(?:\.\d{0,8})?/)[0];
+
+    	document.getElementById("pesosf").value = valorbtcars * document.getElementById("bitcoinf").value;
+
+    	// Create our number formatter.
+			var formatter = new Intl.NumberFormat('en-US', {
+ 				style: 'currency',
+  				currency: 'USD',
+  				maximumFractionDigits: 0,
+
+				});
+
+
+    	
+    	document.getElementById("pesosf").type="text";
+    	document.getElementById("pesosf").value = formatter.format(document.getElementById("pesosf").value) ;
+
+
+
+    	
+		}
+        actualizarboton();
+		
+
+		
+
+
+
+	 </script>
+
+
+</body>
+</html>
