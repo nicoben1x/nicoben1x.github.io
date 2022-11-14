@@ -142,6 +142,10 @@ label:active{
 
 
 }
+.inputs:focus {
+    outline: none;
+	border-color: #b6ad8f;
+}
 .divamigos{
 	background-color: #E2DCC8;
 	  display: flex;
