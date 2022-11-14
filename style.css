@@ -1,0 +1,201 @@
+body{
+	display:flex;    
+	justify-content: center;
+	background-color: #E2DCC8;
+
+}
+#divpadre{
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	
+	background-color: #E2DCC8;
+	margin: 0 auto;
+
+
+
+}
+.selectedItem{
+	background-color: #867f68;
+	
+}
+#divjefe{
+
+	background-color: #E2DCC8;
+	
+	width:500px;
+	margin: 0 auto;
+	display:block;
+	overflow:auto;
+	min-width: 355px;
+
+
+	
+}
+#div-calc{
+	background-color: red;
+	margin-top: 10px;
+	
+}
+#div-botones{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	width:100%;
+	background-color: #E2DCC8 ;
+
+	
+}
+h1{
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	font-size: 27px;
+	background-color:#867f68;
+	text-align: center;
+	color:#F1F1F1;
+	border-radius: 10px;
+	margin-bottom: 2px;
+}
+#parrafo{
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	font-size: 13px;
+	background-color:#4f472d;
+	text-align: center;
+	color:#F1F1F1;
+	border-radius: 10px;
+
+}
+#idactualizar{
+	font-size: 16px;
+    background-color: #867f68;
+    color: #F1F1F1;
+    border-style: none;
+    padding: 10px;
+	
+
+}
+
+#botonmodo{
+	font-size: 16px;
+    background-color: #867f68;
+    color: #F1F1F1;
+    border-style: none;
+    padding: 10px;
+	
+
+}
+#botonmodo:active{
+	background-color: #b6ad8f;
+}
+#idactualizar:active{
+	background-color: #b6ad8f;
+	font-size:17px;
+	padding:9px;
+}
+
+label{
+
+	font-size: 22px;
+	background-color: #000000e6;
+	
+	display: flex;
+	width: 110px;
+	height: 30px;
+	justify-content: center;
+	color: #F1F1F1;
+	border: 4px solid #100F0F;
+
+
+
+}
+label:active{
+	background-color: #777058;
+	
+}
+
+#pesosid{
+
+}
+
+.inputs{
+	font-size: 17px;
+	background-color: #E2DCC8;
+	width: 100%;
+	border: 4px solid #100F0F;
+
+
+
+
+}
+.divamigos{
+	background-color: #E2DCC8;
+	  display: flex;
+	  max-height: 100px;
+
+
+}
+#nico{
+	font-size: 13px;
+	color: #575757;
+}
+
+@media (max-width: 382px) {
+ 
+	body{
+	
+	
+
+	}
+
+	#divjefe{
+		width:290px;
+		min-width: 280px;
+	}
+	#nico{
+	font-size: 10px;
+	
+}
+
+}
+
+@media (min-width: 600px) {
+ 
+	body{
+	
+	
+
+	}
+
+	#divjefe{
+		width:600px;
+		min-width: 600px;
+	}
+
+	h1{
+		font-size: 37px;
+
+
+	}
+	#parrafo{
+		font-size: 20px;
+
+
+	}
+
+	#idactualizar{
+	font-size: 21px;
+	
+	}
+
+	#botonmodo{
+	font-size: 21px;
+
+	}
+
+
+
+}
